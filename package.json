@@ -1,0 +1,23 @@
+{
+  "name": "clem_begin",
+  "version": "1.0.0",
+  "description": "learn me some clementine.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejaywhy/fcc-clem-begin.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thejaywhy/fcc-clem-begin/issues"
+  },
+  "homepage": "https://github.com/thejaywhy/fcc-clem-begin#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^3.0.4"
+  }
+}
