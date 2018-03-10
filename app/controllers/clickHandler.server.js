@@ -1,49 +1,41 @@
 'use strict';
 
-function clickHandler(db) {
-  var clicks = db.collection('clicks');
+var Clicks = require('../models/clicks.model.js');
+
+function clickHandler() {
 
   this.getClicks = function(req, res) {
-    var clickProjection = {fields: {_id: false}};
-    clicks.findOne({}, clickProjection, function(err, result){
-      if (err) throw err;
+    Clicks.findOne({}, {'_id': false})
+      .exec(function(err, result) {
+        if (err) throw err;
 
-      if (result) {
-        res.json(result);
-      } else {
-        clicks.insert({'clicks': 0}, function (err) {
-          if (err) throw err;
-
-          clicks.findOne({}, clickProjection, function(err, doc){
+        if (result) {
+          res.json(result);
+        } else {
+          var newClick = new Clicks({'clicks': 0});
+          newClick.save(function(err, doc) {
             if (err) throw err;
+
             res.json(doc);
           });
-        });
-      }
-    });
+        }
+      });
   };
 
   this.addClick = function(req, res) {
-    clicks.findAndModify(
-      {},
-      {},
-      { $inc: {'clicks': 1} },
-      function(err, result) {
+    Clicks.findOneAndUpdate({}, { $inc: {'clicks': 1} })
+      .exec(function(err, result) {
         if (err) throw err;
         res.json(result);
-      }
-    );
+      });
   };
 
   this.resetClicks = function(req, res) {
-    clicks.update(
-      {},
-      {'clicks': 0},
-      function(err, result) {
+    Clicks.findOneAndUpdate({}, {'clicks': 0})
+      .exec(function(err, result) {
         if (err) throw err;
         res.json(result);
-      }
-    )
+      });
   };
 }
 

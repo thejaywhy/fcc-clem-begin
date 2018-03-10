@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/thejaywhy/fcc-clem-begin#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
-    "mongodb": "^3.0.4"
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.9",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0"
   }
 }
